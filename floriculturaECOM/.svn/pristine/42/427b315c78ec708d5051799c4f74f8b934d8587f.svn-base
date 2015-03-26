@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
+	  xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	 
+	<title>Clarinda Flores</title>
+	 
+	<h:outputStylesheet library="css" name="style.css"/>
+	<h:outputStylesheet library="css" name="layout.css"/>
+	
+	<style type="text/css"><!--
+	#logotipo {
+		text-align: center;
+	} -->
+    </style>
+</h:head>
+
+<body  id="page2">
+<div class="site_center">
+  <div class="site_center1">
+        <div id="header">
+        	<!--  <h:graphicImage library="imagens" name="top.jpg" styleClass="site_center" />-->
+      		<a href="#"><h:graphicImage library="imagens" name="icon.gif" styleClass="icon" /></a><a href="#"><h:graphicImage library="imagens" name="icon1.gif" styleClass="icon1" /></a><a href="#"><h:graphicImage library="imagens" name="icon2.gif" styleClass="icon2" /></a>
+			<a href="#"><h:graphicImage library="imagens" name="logo.gif" styleClass="logo" /></a>
+								<h:graphicImage library="imagens" name="m1.gif" styleClass="m1" />
+			<a href="#"><h:graphicImage library="imagens" name="m1.gif" styleClass="m1" /></a><a href="index-1.html"><h:graphicImage library="imagens" name="m2.gif" styleClass="m2" /></a><a href="index-2.html"><h:graphicImage library="imagens" name="m3.gif" styleClass="m3" /></a><a href="index-3.html"></a>
+        </div>
+   	<div id="content">	
+            <div class="row1">
+            	<div class="row1_bg">
+                	<div class="indent_main">
+                    	<div class="bg">
+                           <!--  Insira aqui o conteúdo da primeira Linha -->
+                          <h:form id="prePreenche">
+                          	<f:metadata>
+					  		    <f:viewParam name="prodNome" value="#{carrinhoBean.prodNome}" />
+					  		    <f:viewParam name="prodPeso" value="#{carrinhoBean.prodPeso}" />
+					  		    <f:viewParam name="prodPreco" value="#{carrinhoBean.prodPreco}" />
+					  		    <f:viewParam name="prodObs" value="#{carrinhoBean.prodObs}" />
+					  		    
+					  		    <f:event type="preRenderView" listener="#{carrinhoBean.preencheListaItemPedido}" />
+						  	</f:metadata>
+                          </h:form>
+                          <h1>Carrinho de compras de: #{contextoBean.usuarioLogado.nome}</h1><br/>
+                          <h:form id="apresCarrinho">		
+                 
+                          		<p:growl id="msgs" showDetail="true"/>
+                 
+                          		<p:dataTable var="ItemPedido" value="#{carrinhoBean.listaItemPedido}" rules="rows" cellpadding="5">
+                          		
+                   		      		<f:facet name="header">
+           								Itens do carrinho: 
+       								</f:facet>
+       								
+    								<p:column headerText="Nome">
+        								<h:outputText value="#{ItemPedido.nome}" />
+    								</p:column>
+    								
+    								<p:column headerText="Obs">
+								        <h:outputText value="#{ItemPedido.observacao}" />
+								    </p:column>
+								    
+								    <p:column headerText="Quantidade" editable="true">
+								    	<h:outputText value="#{ItemPedido.quantidade}            " />
+								    	<h:commandLink action="#{carrinhoBean.adicionarQuant}" value="+">
+	                           				<f:setPropertyActionListener target="#{carrinhoBean.itemPRemover}" value="#{ItemPedido}" />
+	                           				<f:ajax render=":apresCarrinho" />
+	                           			</h:commandLink>
+	                           			<h:commandLink action="#{carrinhoBean.removerQuant}" value="            -">
+	                           				<f:setPropertyActionListener target="#{carrinhoBean.itemPRemover}" value="#{ItemPedido}" />
+	                           				<f:ajax render=":apresCarrinho" />
+	                           			</h:commandLink>
+								    </p:column>
+								    
+								    <p:column headerText="Peso">
+								        <h:outputText value="#{ItemPedido.peso}" />
+								    </p:column>
+								    
+								    <p:column headerText="Preço">
+								        <h:outputText value="#{ItemPedido.preco}" />
+								    </p:column>
+								    
+								    <p:column headerText="Peso Total">
+								        <h:outputText value="#{ItemPedido.pesoTotal}" />
+								    </p:column>
+								    
+								    <p:column headerText="Preço Total">
+								        <h:outputText value="#{ItemPedido.precoTotal}" />
+								    </p:column>
+								    
+								    <p:column>
+									    <h:commandLink action="#{carrinhoBean.excluir}">
+	                           				<h:graphicImage library="imagens" name="excluir16.png" style="border:0" />
+	                           				<f:setPropertyActionListener target="#{carrinhoBean.itemPRemover}" value="#{ItemPedido}" />
+	                           				<f:ajax render=":apresCarrinho" />
+	                           			</h:commandLink>
+									</p:column>
+								</p:dataTable>
+								
+								<p:button outcome="/restrito/apresentacao.xhtml" value="Continuar comprando" />
+    							<p:commandButton ajax="true" oncomplete="endDialogo.show()" value="Encerrar Pedido" />			
+								
+								<p:dialog header="Escolher Endereço de Entrega" widgetVar="endDialogo" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+	        					<p:outputPanel id="DetalheQuantidade" style="text-align:center;">
+	            					
+						                <h:outputLabel value="Selecione o endereço de entrega: " for="categoria"/>
+						                <!--  
+						                <h:selectOneListbox id="categoria" value="#{apresProdutoBean.catSelecionada}" update="selProdPorCat">									  	
+            								<f:selectItems value="#{categoriaBean.lista}" var="c" itemLabel="#{c.nome}" itemValue="#{c.nome}" />
+            								<f:converter converterId="conversorCategoria"/>	
+            								<f:ajax execute=":categoria" render="selProdPorCat:catPedidosG"/>
+            							</h:selectOneListbox>
+					 					-->
+					 					<p:button outcome="/restrito/carrinho.xhtml" oncomplete="quantDialogo.hide()" value="OK">
+						 					<!--  <f:param name="prodQuant" value="#{carrinhoBean.quantidade}" />-->
+					 					</p:button>
+
+						        </p:outputPanel>
+						    </p:dialog>
+								
+                          </h:form>
+                          
+                     	 </div>
+                    </div>
+                </div>
+            </div>
+        	<div class="row2">
+            	<div class="row2_bg">
+                	<div class="indent_main">
+                      <div class="bg">
+                            <!-- Insira aqui o conteúdo da segunda Linha -->
+                      </div>
+                    </div>
+                </div>
+            </div>
+    </div>	 
+        <div id="footer"><div class="indent_footer">Daniel P. &copy; 2015 | <a href="">Privacy Policy</a></div></div>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
