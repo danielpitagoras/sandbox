@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Internet Motors - Cadastro de Usuários</title>
+
+<h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+<body id="page2">
+<div id="areatotal">
+
+  <div class="fundo">
+    <!--==============================Cabeçalho=================================-->
+    <div id="cabecalho">
+    <h1><a href="index.html">Internet Motors</a></h1>
+      <div class="principal">
+        <div class="pacote">
+          
+          <ul class="menu">
+            <li><a href="../publico/principal.jsf">.</a></li>
+            <li><a href="../publico/login.jsf">Login</a></li>
+            <li><a class="ativo" href="../publico/usuario.jsf">Cadastro de Usuário</a></li>
+          </ul>
+          
+        </div>
+        
+          
+        
+      </div>
+    </div>
+    </div>
+    <!--==============================Conteúdo================================-->
+   
+    <div id="conteudo">
+       
+      <div class="principal">
+        <div class="quadro-baixo">
+        	<div class="quadro-topo">
+        	
+                           <h:form id="cadastro">
+                           		
+                           		<h:messages/>
+                           		<h:inputHidden value="#{usuarioBean.usuario.codigo}" />
+                           		<h:inputHidden value="#{usuarioBean.usuario.ativo}" />
+                           		<h:inputHidden value="#{usuarioBean.destinoSalvar}" />
+                           		<h:inputHidden value="#{usuarioBean.senhaCriptografada}"/>
+                           		
+                           		<div class="caixa_5">
+                           			<h:panelGrid column="2">
+                           			<h:outputLabel value="Nome Completo:" for="nome"/>
+                           			<h:inputText id="nome" label="Nome" value="#{usuarioBean.usuario.nome}" size="30" maxlength="30" required="true" requiredMessage="Você não tem nome?">
+                           				<f:validateLength minimum="10" maximum="30"/>
+                                    </h:inputText>
+                           			
+                           			<h:outputLabel value="Data Nascimento:" for="data"/>
+                           			<h:inputText id="data" label="Data Nascimento" value="#{usuarioBean.usuario.nascimento}" size="10" maxlength="10" required="true" >
+                           				<f:convertDateTime dateStyle="medium" />
+                           			</h:inputText>
+                           			
+                           			<h:outputLabel value="CPF" for="cpf" />
+                           			<h:inputText id="cpf" label="CPF" value="#{usuarioBean.usuario.cpf}" size="15" /> 
+                           			
+                           			<h:outputLabel value="Telefone" for="fone" />
+                           			<h:inputText id="fone" label="Telefone" value="#{usuarioBean.usuario.fone}" size="8" />
+                           			
+                           			<h:outputLabel value="Celular" for="celular" />
+                           			<h:inputText id="celular" label="Celular" value="#{usuarioBean.usuario.celular}" size="10" />
+                           			
+                           			<h:outputLabel value="e-Mail:" for="email" />
+                           			<h:panelGroup>
+                           				<h:inputText id="email" label="e-Mail" value="#{usuarioBean.usuario.email}" size="50" maxlength="50" required="true" validatorMessage="e-Mail inválido">
+                           					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+"/>
+                           				</h:inputText>
+                           			.	<h:message for="email"/>
+                           			</h:panelGroup>
+                           			</h:panelGrid>
+                           		</div>
+                           		<div class="caixa_6">
+                           			<h:panelGrid column="2">
+	                           			<h:outputLabel value="Login:" for="login"/>
+	                           			<h:inputText id="login" label="Login" value="#{usuarioBean.usuario.login}" size="15" maxlength="15" required="true" validatorMessage="Login deve ter no mínimo 5 e no máximo 15 caracteres e só pode ter os símbolos '.' e '_'.">
+	                           				<f:validateRegex pattern="([a-z]|[0-9]|[.]|[_]){5,15}"/>
+	                           			</h:inputText>
+	                           			
+	                           			<h:outputLabel value="Senha:" for="senha" />
+	                           			<h:inputSecret id="senha" label="Senha" value="#{usuarioBean.usuario.senha}" size="10" maxlength="10" required="#{empty contextoBean.usuarioLogado}" redisplay="false" />
+	                           			
+	                           			<h:outputLabel value="Confirmar Senha:" for="confirmarsenha"/>
+	                           			<h:inputSecret id="confirmarsenha" label="Confirmar Senha" value="#{usuarioBean.confirmarSenha}" size="10" maxlength="10" required="#{empty contextoBean.usuarioLogado}" redisplay="false" />
+                           			</h:panelGrid>
+                           			<h:commandButton action="#{usuarioBean.salvar}" value="Salvar" styleClass="botao"/>
+                           		</div>
+                           </h:form>
+      	 </div>
+      	</div>                     
+      </div>
+    </div>
+    
+    <!--==============================Rodapé=================================-->
+    <div id="rodape">	
+       
+      	<span class="endereco">Av. das Américas 700, Barra da Tijuca</span> 
+      	<span class="fone">Tel: +55 21 2100 0000</span> 
+      
+    </div>	
+ 
+
+</div>
+</body>
+
+</html>

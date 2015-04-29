@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Internet Motors</title>
+
+<h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+<body id="page2">
+<div id="areatotal">
+
+  <div class="fundo">
+    <!--==============================Cabeçalho=================================-->
+    <div id="cabecalho">
+    <h1><a href="index.html">Internet Motors</a></h1>
+      <div class="principal">
+        <div class="pacote">
+          
+          <ul class="menu">
+            <li><a href="../publico/principal.jsf">.</a></li>
+            <li><a href="../publico/login.jsf">Login</a></li>
+            <li><a href="../publico/usuario.jsf">Cadastra-se</a></li>
+            
+          </ul>
+          
+        </div>
+        
+          
+        
+      </div>
+    </div>
+    </div>
+    <!--==============================Conteúdo================================-->
+   
+    <div id="conteudo">
+       
+      <div class="principal">
+        <div class="quadro-baixo">
+        	<div class="quadro-topo">
+        	
+        	<h:form id="cadastro">
+                           <h:dataTable value="#{usuarioBean.lista}" var="usuario" rules="rows" cellpadding="5">
+                           		<f:facet name="caption">
+                           			A listagem a seguir exibe a relação de todos os usuários do sistema. Opções[Ativar, Desativar, Edição, exclusão].
+                           		</f:facet>
+                           		<f:facet name="header">Listagem de Usuários</f:facet>
+                           		<f:facet name="footer">Final da listagem</f:facet>
+                           		<h:column>
+                           			<h:commandLink action="#{usuarioBean.ativar}">
+                           				<h:graphicImage library="imagens" name="usuario_ativo_#{usuario.ativo}.png" style="border:0" />
+                           				<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />
+                           			</h:commandLink>
+                           		</h:column>
+                           		<h:column>
+                           			<f:facet name="header">Código</f:facet>#{usuario.codigo}
+                           		</h:column>
+                           		<h:column>
+                           			<f:facet name="header">Nome</f:facet>#{usuario.nome}
+                           		</h:column>
+                           		<h:column>
+                           			<f:facet name="header">e-Mail</f:facet><a href="mailto:#{usuario.email}">#{usuario.email}</a>
+                           		</h:column>
+                           		<h:column>
+									<f:facet name="header">Permissões</f:facet>
+										<h:commandLink action="#{usuarioBean.atribuiPermissao(usuario, 'ROLE_ADMINISTRATOR')}" title="Permissão Administrador">
+											<h:graphicImage library="imagens" name="ROLE_ADMINISTRADOR_#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}.png" style="border:0" />
+										</h:commandLink>
+										<h:commandLink action="#{usuarioBean.atribuiPermissao(usuario, 'ROLE_USUARIO_VIP')}" title="Permissao Usuário VIP">
+											<h:graphicImage library="imagens" name="ROLE_USUARIO_VIP_#{usuario.permissao.contains('ROLE_USUARIO_VIP')}.png" style="border:0" />
+										</h:commandLink>
+								</h:column>
+                           		<h:column>
+                           			<h:commandLink action="#{usuarioBean.editar}">
+                           				<h:graphicImage library="imagens" name="editar16.png" style="border:0" />
+                           				<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />
+                           				<f:setPropertyActionListener target="#{usuarioBean.destinoSalvar}" value="/Admin/principal" />
+                           			</h:commandLink>
+                           		</h:column>
+                           		<h:column>
+                           			<h:commandLink action="#{usuarioBean.excluir}" >
+                           				<h:graphicImage library="imagens" name="excluir16.png" style="border:0" />
+                           				<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}" />
+                           			</h:commandLink>
+                           		</h:column>
+                           </h:dataTable>
+                           </h:form>
+                          
+      	 </div>
+      	</div>                     
+      </div>
+    </div>
+    
+    <!--==============================Rodapé=================================-->
+    <div id="rodape">	
+       
+      	<span class="endereco">Av. das Américas 700, Barra da Tijuca</span> 
+      	<span class="fone">Tel: +55 21 2100 0000</span> 
+      
+    </div>	
+ 
+
+</div>
+</body>
+
+</html>

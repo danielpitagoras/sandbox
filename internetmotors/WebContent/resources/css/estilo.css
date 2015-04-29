@@ -1,0 +1,233 @@
+
+/* Propriedades Gerais ======================================================== */
+html {
+	width:100%;
+	height:100%;
+}
+body {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:100%;
+	color:#7f7f7f;
+	min-width:960px;
+	height:100%;
+	background-image: url("#{resource['imagens/body-bg.jpg']}"); 
+	background-position: top center;
+	background-repeat: repeat-x;
+	background-color:#151515 
+}
+#areatotal {
+	min-height:100%;
+	position:relative;
+}
+
+.principalfundo {
+	width:100%;
+	min-height:100%;
+	background-image: url("#{resource['imagens/bg-2.jpg']}");
+	background-position: top center;
+	background-repeat: repeat-x
+}
+.fundo {
+	width:100%;
+	
+	background-image: url("#{resource['imagens/bg.jpg']}");
+	background-position: top center;
+	background-repeat: no-repeat
+}
+.principal {
+	width:960px;
+	padding:0;
+	margin:0 auto;
+	font-size:13px;
+	line-height:24px;
+}
+
+a {
+	color:#b22300;
+	outline:none;
+}
+.pacote {
+	width:100%;
+	overflow:hidden;
+}
+
+/***************************Caixas*************************/
+.caixa_1, .caixa_2, .caixa_3, .caixa_4, .caixa_5, .caixa_6, .caixa_7, .caixa_8, .caixa_9, .caixa_10, .caixa_11, .caixa_12 {
+	display:inline;
+	float: left;
+	position: relative;
+	margin-left: 10px;
+	margin-right: 10px;
+	
+}
+
+.caixa-esquerda {
+	padding-left:30px;
+}
+.caixa-esquerda2 {
+	padding-left:10px;
+}
+.caixa-direita {
+	padding-right:30px;
+}
+.caixa_1 {
+	width:60px;
+}
+.caixa_2 {
+	width:140px;
+}
+.caixa_3 {
+	width:220px;
+}
+.caixa_4 {
+	width:300px;
+}
+.caixa_5 {
+	width:380px;
+}
+.caixa_6 {
+	width:460px;
+}
+.caixa_7 {
+	width:540px;
+	height: 600px;
+}
+.caixa_8 {
+	width:620px;
+}
+.caixa_9 {
+	width:700px;
+}
+.caixa_10 {
+	width:780px;
+}
+.caixa_11 {
+	width:860px;
+}
+.caixa_12 {
+	width:940px;
+}
+
+
+/*********************************Cabeçalho*************************************/
+#cabecalho {
+	padding:10px;
+}
+h1 {
+	padding:45px 20px 37px 26px;
+	background-repeat: no-repeat;
+	float:left;
+}
+h1 a {
+	display:block;
+	width:230px;
+	height:55px;
+	text-indent:-999em;
+	background-image: url("#{resource['imagens/logoN.png']}");
+	background-repeat: no-repeat;
+}
+
+/***** menu *****/
+.menu li {
+	float:left;
+	position:relative;
+	background-image: url("#{resource['imagens/menu-espaco.gif']}");
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+.menu li a {
+	display:inline-block;
+	font-size:18px;
+	line-height:25px;
+	padding:12px 28px 12px 29px;
+	color:#808080;
+	text-transform:capitalize;
+}
+.menu li a.ativo, .menu > li > a:hover {
+	color:#fff;
+}
+.menu > li:first-child > a {
+	text-indent:-999em;
+	background-image: url("#{resource['imagens/menu-principal.png']}");
+	background-position: center -25px;
+	background-repeat: no-repeat;
+	min-width:22px;
+}
+.rot_usuario {
+	text-align:center;
+}
+
+/*********************************content*************************************/
+#conteudo {
+	width:100%;
+	padding-bottom:10px; 
+	position:relative;
+	z-index:1;
+}
+
+.conteudo2 {
+	width:100%;
+	padding:43px 0;
+	position:relative;
+	z-index:1;
+}
+.quadro-topo {
+	width:100%;
+	padding:20px 0 40px;
+	
+}
+.quadro-baixo {
+	width:100%;
+	padding-bottom:6px;
+	
+}
+
+.botao {
+	display:inline-block;
+	padding:5px 15px 6px;
+	font-size:13px;
+	line-height:1.23em;
+	font-weight:bold;
+	color:#000;
+	background-image: url("#{resource['imagens/botao-t.gif']}");
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	background-color: #fb4400;
+	cursor:pointer;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+
+/****************************Rodapé************************/
+#rodape {
+	width:100%;
+	height:100px;
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+#rodape2 {
+	width:100%;
+	position:relative;
+	top: 200px;
+	z-index:3;
+	padding:0 0 40px;
+}
+.endereco {
+	display:block;
+	font-size:14px;
+	line-height:28px;
+	text-align:center;
+	color:#b22300;
+	margin-top:5px;
+	
+}
+.fone {
+	display:block;
+	font-size:16px;
+	line-height:30px;
+	text-align:center;
+	color:#fff;
+	margin-top:5px;
+}
