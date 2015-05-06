@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -44,8 +45,100 @@
       <div class="principal">
         <div class="quadro-baixo">
         	<div class="quadro-topo">
-        	
-                          
+        		<div class="caixa_5">
+        			<h2>Veículos:</h2>
+        		
+        			<h:form id="exibeVeiculos">
+        				<h:panelGroup id="veiculosCadastrados">
+	        				<h:panelGrid column="4">
+	        					<h:outputLabel value="Veículos Cadastrados: " for="placa"/>
+									
+									<h:selectOneListbox id="veiculo" value="#{veiculoBean.veiculoSelecionado}">									  	
+		            					<f:selectItems value="#{veiculoBean.listadeVeiculos}" var="veiculo" itemLabel="#{veiculo.placa}" itemValue="#{veiculo}" />
+		            						<f:converter converterId="conversorVeiculo"/>		
+		            				</h:selectOneListbox>
+	        					    
+	        				</h:panelGrid>
+        				</h:panelGroup>
+        				
+        				<p:commandButton ajax="true" oncomplete="veiculoDialogo.show()" value="Adicionar veículo" styleClass="botao" />
+        				
+        			</h:form>
+        		</div>
+        		<div class="caixa_6">
+        		<h:form id="preedicao" enctype="multipart/form-data">
+                           	<h:panelGrid column="3">
+                           		<h:outputLabel value="Imagem1: " for="upArq1"/>
+                           		<p:graphicImage id="img1rot" value="#{contextoBean.imgStream1}" width="100" height="70" />
+                           		<h:inputFile id="upArq1" value="#{contextoBean.arqImagem1}">
+                           			<f:ajax execute="upArq1" render=":preedicao" />
+                           		</h:inputFile>
+                           		<h:outputLabel value="Imagem2: " for="upArq2"/>
+                           		<p:graphicImage id="img2rot" value="#{contextoBean.imgStream2}" width="100" height="70" />
+                           		<h:inputFile id="upArq2" value="#{contextoBean.arqImagem2}">
+                           			<f:ajax execute="upArq2" render=":preedicao" />
+                           		</h:inputFile>
+                           		<h:outputLabel value="Imagem3: " for="upArq3"/>
+                           		<p:graphicImage id="img3rot" value="#{contextoBean.imgStream3}" width="100" height="70" />
+                           		<h:inputFile id="upArq3" value="#{contextoBean.arqImagem3}">
+                           			<f:ajax execute="upArq3" render=":preedicao" />
+                           		</h:inputFile>
+                           		<h:outputLabel value="Imagem4: " for="upArq4"/>
+                           		<p:graphicImage id="img4rot" value="#{contextoBean.imgStream4}" width="100" height="70" />
+                           		<h:inputFile id="upArq4" value="#{contextoBean.arqImagem4}">
+                           			<f:ajax execute="upArq4" render=":preedicao" />
+                           		</h:inputFile>
+                           		<h:outputLabel value="Imagem5: " for="upArq5"/>
+                           		<p:graphicImage id="img5rot" value="#{contextoBean.imgStream5}" width="100" height="70" />
+                           		<h:inputFile id="upArq5" value="#{contextoBean.arqImagem5}">
+                           			<f:ajax execute="upArq5" render=":preedicao" />
+                           		</h:inputFile>
+							</h:panelGrid>                           		
+                </h:form>
+                
+        		<h:form id="cadVeiculo">
+                           		<h:messages/>
+                           		<h:inputHidden value="#{veiculoBean.veiculo.codigo}" />
+                           		<h:panelGrid column="4">
+	                           		<h:outputLabel value="Categoria: " for="categoria"/>
+	                           		<h:selectOneListbox id="categoria" value="#{veiculoBean.veiculo.categoria}">
+										   	<f:selectItem itemValue="hatch" itemLabel="Hatch" />
+										   	<f:selectItem itemValue="sedan" itemLabel="Sedan" />
+										   	<f:selectItem itemValue="perua" itemLabel="Perua" />
+										   	<f:selectItem itemValue="minivan" itemLabel="Minivan" />
+										   	<f:selectItem itemValue="van" itemLabel="Van" />
+										   	<f:selectItem itemValue="suv" itemLabel="SUV" />
+										   	<f:selectItem itemValue="jipe" itemLabel="Jipe" />
+										   	<f:selectItem itemValue="picape" itemLabel="Picape" />
+										   	<f:selectItem itemValue="cupe" itemLabel="Cupê" />
+										   	<f:selectItem itemValue="conversivel" itemLabel="Conversível" />
+										   	<f:selectItem itemValue="furgao" itemLabel="Furgão" />
+										   	<f:selectItem itemValue="chassi-cabine" itemLabel="Chassi-Cabine" />
+									</h:selectOneListbox>
+	                           		<h:outputLabel value="Chassi: " for="chassi" />
+	                           		<h:inputText id="chassi" label="Chassi" value="#{veiculoBean.veiculo.chassi}" />
+	                           		<h:outputLabel value="Cor Predominante: " for="cor" />
+	                           		<h:inputText id="cor" label="Cor" value="#{veiculoBean.veiculo.cor}" />
+	                           		<h:outputLabel value="Data Fabricação: " for="dataFabricacao" />
+	                           		<h:inputText id="dataFabricacao" label="Data Fabricação" value="#{veiculoBean.veiculo.dataFabricacao}">
+	                           			<f:convertDateTime dateStyle="medium" />
+	                           		</h:inputText>
+	                           		<h:outputLabel value="Data Modelo: " for="dataModelo" />
+	                           		<h:inputText id="dataModelo" label="Data Modelo" value="#{veiculoBean.veiculo.dataModelo}">
+	                           			<f:convertDateTime dateStyle="medium" />
+	                           		</h:inputText>	                          
+	                           		<h:outputLabel value="Marca: " for="marca" />
+	                           		<h:inputText id="marca" label="Marca" value="#{veiculoBean.veiculo.marca}" />
+	                           		<h:outputLabel value="Modelo: " for="modelo" />
+	                           		<h:inputText id="modelo" label="Modelo" value="#{veiculoBean.veiculo.modelo}" />
+	                           		<h:outputText value="Placa: " for="placa" />
+	                           		<h:inputText id="placa" label="Placa" value="#{veiculoBean.veiculo.placa}" />
+	                           		<h:outputText value="Quilometragem atual: " for="quilometragem" />
+	                           		<h:inputText id="quilometragem" label="Quilometragem atual" value="#{veiculoBean.veiculo.quilometragem}" />
+ 	                           		<h:commandButton action="#{veiculoBean.salvar()}" value="Salvar" styleClass="botao" />
+	                           	</h:panelGrid>  				
+                 </h:form>
+        	</div>
       	 </div>
       	</div>                     
       </div>

@@ -12,6 +12,7 @@
    
     	<mapping class="internetmotors.usuario.Usuario"/>
     	<mapping class="internetmotors.endereco.Endereco"/>
+    	<mapping class="internetmotors.veiculo.Veiculo"/>
     	
     </session-factory>
 </hibernate-configuration>

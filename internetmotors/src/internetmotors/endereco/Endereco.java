@@ -23,7 +23,7 @@ public class Endereco implements Serializable{
 
 	@Id
 	@GeneratedValue
-	@Column(name = "codigo")
+	@Column(name = "cod_Endereco")
 	private Integer codigo;
 	
 	@Column(name = "descricao", length = 50, nullable = false)
