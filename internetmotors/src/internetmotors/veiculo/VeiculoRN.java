@@ -28,6 +28,10 @@ public class VeiculoRN {
 		this.veiculoDAO.salvar(veiculo);
 	}
 	
+	public void atualizar(Veiculo veiculo) {
+		this.veiculoDAO.atualizar(veiculo);
+	}
+	
 	public void excluir(Veiculo veiculo) {
 		this.veiculoDAO.excluir(veiculo);
 	}

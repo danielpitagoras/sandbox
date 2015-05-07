@@ -28,7 +28,7 @@ public class VeiculoDAOHibernate implements VeiculoDAO {
 
 	@Override
 	public void atualizar(Veiculo veiculo) {
-
+		this.session.update(veiculo);
 	}
 
 	@Override

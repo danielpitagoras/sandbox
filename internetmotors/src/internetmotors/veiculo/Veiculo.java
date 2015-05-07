@@ -15,17 +15,18 @@ import internetmotors.usuario.Usuario;
 
 public class Veiculo implements Serializable{
 
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6227973180852764373L;
+	private static final long serialVersionUID = 4213521258829371378L;
 
 	@Id
 	@GeneratedValue
 	@Column(name = "cod_Veiculo")
 	private Integer codigo;
 	
-	@Column(name = "imagem1", nullable = false, columnDefinition="mediumblob")
+	@Column(name = "imagem1", columnDefinition="mediumblob")
 	private byte[] imagem1;
 	
 	@Column(name = "imagem2", columnDefinition="mediumblob")
@@ -62,10 +63,10 @@ public class Veiculo implements Serializable{
 	private Integer quilometragem;
 	
 	@Column(name = "data_fabricacao", nullable = false)
-	private Date dataFabricacao;
+	private Integer dataFabricacao;
 	
 	@Column(name = "data_modelo", nullable = false)
-	private Date dataModelo;
+	private Integer dataModelo;
 	
 	@Column(name = "data_criacao", nullable = false)
 	private Date dataCriacao;
@@ -182,19 +183,19 @@ public class Veiculo implements Serializable{
 		this.quilometragem = quilometragem;
 	}
 
-	public Date getDataFabricacao() {
+	public Integer getDataFabricacao() {
 		return dataFabricacao;
 	}
 
-	public void setDataFabricacao(Date dataFabricacao) {
+	public void setDataFabricacao(Integer dataFabricacao) {
 		this.dataFabricacao = dataFabricacao;
 	}
 
-	public Date getDataModelo() {
+	public Integer getDataModelo() {
 		return dataModelo;
 	}
 
-	public void setDataModelo(Date dataModelo) {
+	public void setDataModelo(Integer dataModelo) {
 		this.dataModelo = dataModelo;
 	}
 

@@ -21,6 +21,26 @@ public class VeiculoBean {
 	private Usuario usuarioLogado = null;
 	private ContextoBean contextoBean = ContextoUtil.getContextoBean();
 	private Veiculo veiculoSelecionado;
+	private List<Veiculo> listadeVeiculos;
+	
+	public String adImagens(){
+		
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		veiculoSelecionado = contextoBean.getVeiculoSelecionado();
+		
+		this.veiculoSelecionado.setImagem1(contextoBean.getImgb1());
+		this.veiculoSelecionado.setImagem2(contextoBean.getImgb2());
+		this.veiculoSelecionado.setImagem3(contextoBean.getImgb3());
+		this.veiculoSelecionado.setImagem4(contextoBean.getImgb4());
+		this.veiculoSelecionado.setImagem5(contextoBean.getImgb5());
+		
+		VeiculoRN veiculoRN = new VeiculoRN();
+		veiculoRN.atualizar(veiculoSelecionado);
+		
+		return "imgAdicionadas";
+		
+	}
+	
 	
 	public String salvar() {	
 		
@@ -30,11 +50,7 @@ public class VeiculoBean {
 		VeiculoRN veiculoRN = new VeiculoRN();
 		this.veiculo.setUsuario(usuarioLogado);
 		this.veiculo.setDataCriacao(new Date());
-		this.veiculo.setImagem1(contextoBean.getImgb1());
-		this.veiculo.setImagem2(contextoBean.getImgb2());
-		this.veiculo.setImagem3(contextoBean.getImgb3());
-		this.veiculo.setImagem4(contextoBean.getImgb4());
-		this.veiculo.setImagem5(contextoBean.getImgb5());
+		this.veiculo.setDataModificacao(new Date());
 		veiculoRN.salvar(veiculo);
 		
 		return "veiculoCadSucesso";
@@ -49,7 +65,7 @@ public class VeiculoBean {
 		this.veiculo = veiculo;
 	}
 	
-	private List<Veiculo> listadeVeiculos;
+	
 	
 	public Usuario getUsuarioLogado() {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -80,6 +96,10 @@ public class VeiculoBean {
 		this.veiculoSelecionado = veiculoSelecionado;
 	}
 	public List<Veiculo> getListadeVeiculos() {
+		
+		this.usuarioLogado = contextoBean.getUsuarioLogado();
+		this.listadeVeiculos = contextoBean.getListadeVeiculos();
+		
 		return listadeVeiculos;
 	}
 	public void setListadeVeiculos(List<Veiculo> listadeVeiculos) {

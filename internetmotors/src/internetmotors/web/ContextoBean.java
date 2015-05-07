@@ -20,6 +20,7 @@ import org.primefaces.model.StreamedContent;
 import internetmotors.endereco.Endereco;
 import internetmotors.endereco.EnderecoRN;
 import internetmotors.usuario.*;
+import internetmotors.veiculo.*;
 
 @ManagedBean(name = "contextoBean")
 @SessionScoped
@@ -27,7 +28,9 @@ import internetmotors.usuario.*;
 public class ContextoBean {
 
 	private Usuario usuarioLogado = null;
+	private Veiculo veiculoSelecionado = null;
 	private List<Endereco> listadeEnderecos = new ArrayList<Endereco>();
+	private List<Veiculo> listadeVeiculos = new ArrayList<Veiculo>();
 	private Part arqImagem1 = null;
 	private Part arqImagem2 = null;
 	private Part arqImagem3 = null;
@@ -164,9 +167,39 @@ public class ContextoBean {
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
+	
+	public Veiculo getVeiculoSelecionado() {
+		return veiculoSelecionado;
+	}
+
+	public void setVeiculoSelecionado(Veiculo veiculoSelecionado) {
+		this.veiculoSelecionado = veiculoSelecionado;
+	}
 
 	public void setListadeEnderecos(List<Endereco> listadeEnderecos) {
 		this.listadeEnderecos = listadeEnderecos;
+	}
+
+	public List<Veiculo> getListadeVeiculos() {
+		
+		if (this.listadeVeiculos.isEmpty()) {
+			
+			VeiculoRN veiculoRN = new VeiculoRN();
+			
+			if (this.usuarioLogado == null) {
+				
+			} else {
+				this.listadeVeiculos = veiculoRN.listarPorUsuario(usuarioLogado);
+				return listadeVeiculos;
+			}
+			
+		}
+	
+		return listadeVeiculos;
+	}
+
+	public void setListadeVeiculos(List<Veiculo> listadeVeiculos) {
+		this.listadeVeiculos = listadeVeiculos;
 	}
 
 	public Part getArqImagem1() {
