@@ -12,5 +12,6 @@ public interface VeiculoDAO {
 	public Veiculo carregar(Integer codigo);
 	public List<Veiculo> listar();
 	public List<Veiculo> listarPorUsuario(Usuario usuario);
+	public Veiculo buscarUltimoModificado(Integer codUsuario);
 	
 }

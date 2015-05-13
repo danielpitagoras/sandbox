@@ -4,7 +4,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +27,50 @@ public class VeiculoBean {
 	private Usuario usuarioLogado = null;
 	private ContextoBean contextoBean = ContextoUtil.getContextoBean();
 	private Veiculo veiculoSelecionado;
+	private Veiculo veiculoInicial;
 	private List<Veiculo> listadeVeiculos;
+	private byte[] imgb = null;
+	
+	public StreamedContent getImgStream() throws IOException {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+	    if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+	        // Fase de renderização.
+	        return new DefaultStreamedContent();
+	    }
+	    else {
+	        // Fase do browser solicitar a imagem.
+	    	
+	    	//Checa se existe algum veículo selecionado.
+	    	if(contextoBean.getVeiculoSelecionado() == null) {
+				VeiculoRN veiculoRN = new VeiculoRN();
+				this.usuarioLogado = contextoBean.getUsuarioLogado();
+				this.veiculoInicial = veiculoRN.buscarUltimoAdicionado(this.usuarioLogado.getCodigo());
+				this.imgb = this.veiculoInicial.getImagem1();
+				
+			} else {
+				this.imgb = this.veiculoSelecionado.getImagem1();
+			}
+	    	
+	    	if (imgb != null) {
+	    		return new DefaultStreamedContent(new ByteArrayInputStream(this.imgb));
+	    	}
+	    	return new DefaultStreamedContent();
+	    }
+	}
+	
+	
+	public String excluirVeiculo() {
+		
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		veiculoSelecionado = contextoBean.getVeiculoSelecionado();
+		VeiculoRN veiculoRN = new VeiculoRN();
+		veiculoRN.excluir(veiculoSelecionado);
+		
+		return "VeículoExcluído";
+		
+	}
 	
 	public String adImagens(){
 		
@@ -40,7 +89,6 @@ public class VeiculoBean {
 		return "imgAdicionadas";
 		
 	}
-	
 	
 	public String salvar() {	
 		
@@ -95,6 +143,18 @@ public class VeiculoBean {
 	public void setVeiculoSelecionado(Veiculo veiculoSelecionado) {
 		this.veiculoSelecionado = veiculoSelecionado;
 	}
+	
+	public Veiculo getVeiculoInicial() {
+		// * * * TESTE * * * 
+		VeiculoRN veiculoRN = new VeiculoRN();
+		this.veiculoInicial = veiculoRN.buscarUltimoAdicionado(contextoBean.getUsuarioLogado().getCodigo());
+		return veiculoInicial;
+	}
+
+	public void setVeiculoInicial(Veiculo veiculoInicial) {
+		this.veiculoInicial = veiculoInicial;
+	}
+
 	public List<Veiculo> getListadeVeiculos() {
 		
 		this.usuarioLogado = contextoBean.getUsuarioLogado();

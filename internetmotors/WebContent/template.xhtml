@@ -57,6 +57,7 @@
 							<h:graphicImage library="imagens" name="excluir16.png" style="border:0" />
 							<f:setPropertyActionListener target="#{carrinhoBean.itemPRemover}" value="#{ItemPedido}" />
 							<f:ajax render=":apresCarrinho" />
+							<p:remoteCommand name="onload" action="#{bean.onload}" autoRun="true" />
 							-->
 						</h:commandLink>
                		

@@ -50,7 +50,7 @@
         		
         			<h:form id="exibeVeiculos">
         				<h:panelGroup id="veiculosCadastrados">
-	        				<h:panelGrid column="4">
+	        				<h:panelGrid column="3">
 	        					<h:outputLabel value="Veículos Cadastrados: " for="placa"/>
 									
 									
@@ -67,8 +67,10 @@
 		            						<f:converter converterId="conversorVeiculo"/>
 		            						<f:ajax execute=":veiculo" render="adImagens"/>		
 		            				</h:selectOneListbox>
+        						<br/>
+        						<h:commandButton action="#{veiculoBean.excluirVeiculo()}" value="Excluir Veículo" styleClass="botao" />
         						
-        			
+        						<h2>Adicionar Imagens Veículo Selecionado:</h2>
 	                           	<h:panelGrid column="3">
 	                           		<h:outputLabel value="Imagem1: " for="upArq1"/>
 	                           		<p:graphicImage id="img1rot" value="#{contextoBean.imgStream1}" width="100" height="70" />
@@ -101,7 +103,7 @@
         			
         		</div>
         		
-        		<div class="caixa_5">
+        		<div class="caixa_3">
         			<h2>Cadastrar Novo Veículo:</h2>
         			<h:form id="cadVeiculo">
         				<h:inputHidden value="#{veiculoBean.veiculo.codigo}" />

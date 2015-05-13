@@ -35,4 +35,7 @@ public class VeiculoRN {
 	public void excluir(Veiculo veiculo) {
 		this.veiculoDAO.excluir(veiculo);
 	}
+	public Veiculo buscarUltimoAdicionado(Integer codUsuario) {
+		return this.veiculoDAO.buscarUltimoModificado(codUsuario);
+	}
 }

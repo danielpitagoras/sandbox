@@ -54,5 +54,17 @@ public class VeiculoDAOHibernate implements VeiculoDAO {
 		criteria.add(Restrictions.eqOrIsNull("usuario", usuario));
 		return criteria.list();
 	}
+	
+	public Veiculo buscarUltimoModificado(Integer codUsuario) {
+		String hql = "select v from Veiculo v where v.usuario = :codUsuario and v.dataModificacao=(select MAX(a.dataModificacao) from Veiculo a where a.usuario = :codUsuario)";
+		//String hql = "from Veiculo v where v.usuario = :codUsuario order by v.dataModificacao DESC";
+		Query consulta = this.session.createQuery(hql);
+		consulta.setInteger("codUsuario", codUsuario);
+		consulta.setMaxResults(1);
+		return (Veiculo) consulta.uniqueResult();	
+	
+	
+	
+	}
 
 }

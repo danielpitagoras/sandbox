@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -44,7 +45,39 @@
       <div class="principal">
         <div class="quadro-baixo">
         	<div class="quadro-topo">
-        	
+        		<div class="caixa_3">
+        			<h2>Informações Usuário:</h2>
+        				<h:form id="apresUsuario">
+	        				Nome: #{contextoBean.usuarioLogado.nome} <br/>
+	        				Email: #{contextoBean.usuarioLogado.email} <br/>
+	        				Telefone: #{contextoBean.usuarioLogado.fone} <br/>
+	        				Celular: #{contextoBean.usuarioLogado.celular} <br/>
+        					<p:button outcome="/publico/usuario.xhtml" value="Alterar Informações" styleClass="botao" />
+        				</h:form>
+        		</div>
+        		<div class="caixa_4">
+        			<h2>Último Veículo modificado:</h2>
+        				<h:form id="apresVeiculo">
+	        			<a href="../restrito/veiculos.jsf">
+	        				<p:graphicImage id="img1rot" value="#{veiculoBean.imgStream}" width="140" height="110" /> <br/>
+	        				
+	        				Marca: #{veiculoBean.veiculoInicial.marca} <br/>
+	        				Modelo: #{veiculoBean.veiculoInicial.modelo} <br/>
+	        				Placa: #{veiculoBean.veiculoInicial.placa} <br/>
+	        			</a>
+	        			<p:button outcome="/restrito/veiculos.jsf" value="Informações de Veículos" styleClass="botao" />
+	        			</h:form>	
+        		</div>
+        		<div class="caixa_4">
+        			<h2>Última ocorrências do veículo:</h2>
+        			<h:form id="apresOcorrencias">
+        				<a href="../restrito/ocorrencias.jsf">
+        					
+        				</a>
+        				<p:button outcome="/restrito/ocorrencias.jsf" value="Adicionar Ocorrências" styleClass="botao" />
+        			</h:form>
+        			
+        		</div>
                           
       	 </div>
       	</div>                     
