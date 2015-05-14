@@ -25,6 +25,28 @@
 				<to-view-id>/restrito/apresentacao.xhtml</to-view-id>
 			</navigation-case>
 		</navigation-rule>
+		<navigation-rule>
+			<from-view-id>/restrito/veiculos.xhtml</from-view-id>
+			<navigation-case>
+				<from-outcome>veiculoCadSucesso</from-outcome>
+				<to-view-id>/restrito/apresentacao.xhtml</to-view-id>
+			</navigation-case>
+		</navigation-rule>
+		<navigation-rule>
+			<from-view-id>/restrito/cadOcorrencia.xhtml</from-view-id>
+			<navigation-case>
+				<from-outcome>alterarpropriedade</from-outcome>
+				<to-view-id>/restrito/alterarPropriedadeOcorrencia.jsf</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>servico</from-outcome>
+				<to-view-id>/restrito/servicoOcorrencia.jsf</to-view-id>
+			</navigation-case>
+			<navigation-case>
+				<from-outcome>sinistro</from-outcome>
+				<to-view-id>/restrito/sinistroOcorrencia.jsf</to-view-id>
+			</navigation-case>
+		</navigation-rule>
 		
 		<application>  
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>  

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Internet Motors</title>
+
+<h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+<body id="page2">
+<div id="areatotal">
+
+  <div class="fundo">
+    <!--==============================Cabeçalho=================================-->
+    <div id="cabecalho">
+    <h1><a href="index.html">Internet Motors</a></h1>
+      <div class="principal">
+        <div class="pacote">
+          
+           <ul class="menu">
+            <li><a href="../publico/principal.jsf">.</a></li>
+            <li><a href="../restrito/apresentacao.jsf">Perfil: #{contextoBean.usuarioLogado.login}</a></li>
+            <li><a href="../restrito/veiculos.jsf">Veículos </a></li>
+            <li><a class="ativo" href="../restrito/ocorrencias.jsf">Ocorrências</a></li>
+            <li><a href="../restrito/autorizacao.jsf">Autorização</a></li>
+            <li><a href="../restrito/historico.jsf">Histórico</a></li>
+          </ul>
+          
+        </div>
+        
+          
+        
+      </div>
+    </div>
+    </div>
+    <!--==============================Conteúdo================================-->
+   
+    <div id="conteudo">
+       
+      <div class="principal">
+        <div class="quadro-baixo">
+        	<div class="quadro-topo">
+        		<div class="caixa_3">
+        		<h:form id="prePreenche">
+                    <f:metadata>
+					  	<f:viewParam name="codVeiculo" value="#{contextoBean.codVeiculo}" />	    
+					</f:metadata>
+					<h2>Adicionando ocorrências em:</h2>
+					<p:graphicImage id="img1rot" value="#{veiculoBean.imgStreamOc}" width="140" height="110" /> <br/>
+					Marca: #{veiculoBean.veiculoSelOcorrencia.marca} <br/>
+	        		Modelo: #{veiculoBean.veiculoSelOcorrencia.modelo} <br/>
+	        		Placa: #{veiculoBean.veiculoSelOcorrencia.placa} <br/>
+						
+                </h:form>
+              </div>
+              <div class="caixa_3">
+                	<h:form id="cadOcorrencia">
+                		<h2>Selecione o tipo de Ocorrência: </h2>
+                		<h:inputHidden value="#{ocorrenciaBean.ocorrencia.codigo}" />
+                		 
+                		<h:selectOneListbox id="operacao" value="#{ocorrenciaBean.ocorrencia.operacao}">
+							<f:selectItem itemValue="alterarpropriedade" itemLabel="Alteração Propriedade" />
+							<f:selectItem itemValue="servico" itemLabel="Serviço" />
+							<f:selectItem itemValue="sinistro" itemLabel="Sinistro" />
+						</h:selectOneListbox> <br/>
+					
+					<h:panelGroup id="cadDadosOcorrencia">
+	                	<h:panelGrid column="2">
+							<h:outputLabel value="Descrição: " for="descricao" />                           			
+		                    	<h:inputText id="descricao" label="Descrição" value="#{ocorrenciaBean.ocorrencia.descricao}" />
+							<h:outputLabel value="Quilometragem: " for="quilometragem" />                           			
+		                    	<h:inputText id="quilometragem" label="Quilometragem" value="#{ocorrenciaBean.ocorrencia.quilometragemTotal}" />
+		                    <h:outputLabel value="Valor: " for="valor" />                           			
+		                    	<h:inputText id="valor" label="Valor" value="#{ocorrenciaBean.ocorrencia.valor}" />
+						</h:panelGrid>
+					</h:panelGroup>
+                	
+                	<h:commandButton action="#{ocorrenciaBean.salvar}" value="Salvar" styleClass="botao" />
+                	</h:form>
+              </div>
+              <div class="caixa_4">
+                	
+              </div>         
+      	 </div>
+      	</div>                     
+      </div>
+    </div>
+    
+    <!--==============================Rodapé=================================-->
+    <div id="rodape">	
+       
+      	<span class="endereco">Av. das Américas 700, Barra da Tijuca</span> 
+      	<span class="fone">Tel: +55 21 2100 0000</span> 
+      
+    </div>	
+ 
+
+</div>
+</body>
+
+</html>

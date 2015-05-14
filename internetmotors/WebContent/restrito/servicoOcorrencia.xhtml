@@ -46,7 +46,40 @@
         <div class="quadro-baixo">
         	<div class="quadro-topo">
         		<div class="caixa_3">
+        			<h:form id="preCarrega">
+	        			<f:metadata>
+						  	<f:viewParam name="codOcorrencia" value="#{contextoBean.codOcorrencia}" />	    
+						</f:metadata>
         				
+        				<h:outputLabel value="Serviços Cadastrados: " for="servicos"/>
+									
+							<h:selectOneListbox id="servicos" value="#{servicoBean.servicoSelecionado}">									  	
+		            			<f:selectItems value="#{servicoBean.listaServicos}" var="servico" itemLabel="#{servico.identificacao}" itemValue="#{servico}" />
+		            				<f:converter converterId="conversorServico"/>		
+		            	</h:selectOneListbox>
+        				
+        			</h:form>	        	
+        		</div>
+        		<div class="caixa_4">
+        			<h:form id="dadosServico">
+						<h:panelGroup id="cadDadosServico">
+	                	<h:panelGrid column="2">
+	                		<h:inputHidden value="#{servicoBean.servico.codigo}" />
+							<h:outputLabel value="Identificação: " for="identificacao" />                           			
+		                    	<h:inputText id="identificacao" label="Identificação" value="#{servicoBean.servico.identificacao}" />
+							<h:outputLabel value="Motivo: " for="motivo" />                           			
+		                    	<h:inputText id="motivo" label="Motivo" value="#{servicoBean.servico.motivo}" />
+		                    <h:outputLabel value="Responsável: " for="responsavel" />                           			
+		                    	<h:inputText id="responsavel" label="Responsável" value="#{servicoBean.servico.responsavel}" />
+		                    <h:outputLabel value="Endereço Realização: " for="endereco" />                           			
+		                    	<h:inputText id="endereco" label="Endereço Realização" value="#{servicoBean.servico.endLocalResponsavel}" />
+							<h:outputLabel value="Observação: " for="observacao" />                           			
+		                    	<h:inputText id="observacao" label="Observação" value="#{servicoBean.servico.observacao}" />
+							
+						</h:panelGrid>
+					</h:panelGroup>	
+						<h:commandButton action="#{servicoBean.salvar}" value="Salvar" styleClass="botao" />
+					</h:form>	
         		</div>
                      
       	 </div>

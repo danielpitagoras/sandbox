@@ -30,6 +30,8 @@ public class VeiculoBean {
 	private Veiculo veiculoInicial;
 	private List<Veiculo> listadeVeiculos;
 	private byte[] imgb = null;
+	private Integer codVeiculo;
+	private Veiculo veiculoSelOcorrencia;
 	
 	public StreamedContent getImgStream() throws IOException {
 		
@@ -52,6 +54,30 @@ public class VeiculoBean {
 			} else {
 				this.imgb = this.veiculoSelecionado.getImagem1();
 			}
+	    	
+	    	if (imgb != null) {
+	    		return new DefaultStreamedContent(new ByteArrayInputStream(this.imgb));
+	    	}
+	    	return new DefaultStreamedContent();
+	    }
+	}
+	
+	public StreamedContent getImgStreamOc() throws IOException {
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+	    if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+	        // Fase de renderização.
+	        return new DefaultStreamedContent();
+	    }
+	    else {
+	        // Fase do browser solicitar a imagem.
+	    	
+	    	//Apresenta imagem do veículo selecionado na interface de Ocorrência
+	    	this.codVeiculo = contextoBean.getCodVeiculo();
+	    	VeiculoRN veiculoRN = new VeiculoRN();
+	    	this.veiculoSelecionado = veiculoRN.carregar(this.codVeiculo);
+	    	this.imgb = this.veiculoSelecionado.getImagem1();
 	    	
 	    	if (imgb != null) {
 	    		return new DefaultStreamedContent(new ByteArrayInputStream(this.imgb));
@@ -145,7 +171,6 @@ public class VeiculoBean {
 	}
 	
 	public Veiculo getVeiculoInicial() {
-		// * * * TESTE * * * 
 		VeiculoRN veiculoRN = new VeiculoRN();
 		this.veiculoInicial = veiculoRN.buscarUltimoAdicionado(contextoBean.getUsuarioLogado().getCodigo());
 		return veiculoInicial;
@@ -164,6 +189,16 @@ public class VeiculoBean {
 	}
 	public void setListadeVeiculos(List<Veiculo> listadeVeiculos) {
 		this.listadeVeiculos = listadeVeiculos;
+	}
+
+	public Veiculo getVeiculoSelOcorrencia() {
+		VeiculoRN veiculoRN = new VeiculoRN();
+		this.veiculoSelOcorrencia = veiculoRN.carregar(contextoBean.getCodVeiculo());		
+		return veiculoSelOcorrencia;
+	}
+
+	public void setVeiculoSelOcorrencia(Veiculo veiculoSelOcorrencia) {
+		this.veiculoSelOcorrencia = veiculoSelOcorrencia;
 	}
 	
 	

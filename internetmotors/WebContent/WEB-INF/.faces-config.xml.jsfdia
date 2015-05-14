@@ -31,4 +31,38 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#restrito#apresentacao.xhtml"
   PATH="/restrito/apresentacao.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#restrito#cadOcorrencia.xhtml"
+  PATH="/restrito/cadOcorrencia.xhtml" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#restrito#cadOcorrencia.xhtml:0" NAME="item"
+   PATH="/restrito/cadOcorrencia.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="alterarpropriedade::#restrito#alterarPropriedadeOcorrencia.jsf"
+    NAME="output" PATH="/restrito/alterarPropriedadeOcorrencia.jsf"
+    TARGET="rules:#restrito#alterarPropriedadeOcorrencia.jsf"
+    TITLE="alterarpropriedade" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="servico::#restrito#servicoOcorrencia.jsf"
+    NAME="output1" PATH="/restrito/servicoOcorrencia.jsf"
+    TARGET="rules:#restrito#servicoOcorrencia.jsf" TITLE="servico" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="sinistro::#restrito#sinistroOcorrencia.jsf"
+    NAME="output2" PATH="/restrito/sinistroOcorrencia.jsf"
+    TARGET="rules:#restrito#sinistroOcorrencia.jsf" TITLE="sinistro" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#restrito#servicoOcorrencia.jsf"
+  PATH="/restrito/servicoOcorrencia.jsf" SHAPE="272,545,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#restrito#sinistroOcorrencia.jsf"
+  PATH="/restrito/sinistroOcorrencia.jsf" SHAPE="272,657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#restrito#alterarPropriedadeOcorrencia.jsf"
+  PATH="/restrito/alterarPropriedadeOcorrencia.jsf" SHAPE="272,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#restrito#veiculos.xhtml"
+  PATH="/restrito/veiculos.xhtml" SHAPE="32,529,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#restrito#veiculos.xhtml:0" NAME="item"
+   PATH="/restrito/veiculos.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="veiculoCadSucesso::#restrito#apresentacao.xhtml" NAME="output"
+    PATH="/restrito/apresentacao.xhtml"
+    TARGET="rules:#restrito#apresentacao.xhtml"
+    TITLE="veiculoCadSucesso" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

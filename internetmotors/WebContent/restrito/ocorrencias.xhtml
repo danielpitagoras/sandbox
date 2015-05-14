@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -44,8 +45,46 @@
       <div class="principal">
         <div class="quadro-baixo">
         	<div class="quadro-topo">
-        	
-                          
+        		<div class="caixa_3">
+        			<h2>Cadastrar Ocorrências:</h2>
+        				<h:form id="cadOcorrencias">
+        					<h2>Selecionar Veículo:</h2>
+        					<p:carousel id="catPedidos" value="#{veiculoBean.listadeVeiculos}" headerText="Veículos" var="veiculo" effect="fade" vertical="false" numVisible="4" circular="false" itemStyle="height:250px;width:290px">
+       							<h:panelGrid columns="2" style="width:100%" cellpadding="2" columnClasses="label,value">
+           							<f:facet name="header">
+                						<p:graphicImage value="#{contextoBean.imgStream}" width="100" height="70">
+                           				<f:param name="id" value="#{veiculo.codigo}" />
+                           			</p:graphicImage> 
+            						</f:facet>
+ 
+            						<h:outputText value="Marca: " />
+            						<h:outputText value="#{veiculo.marca}" />
+ 
+            						<h:outputText value="Modelo: " />
+            						<h:outputText value="#{veiculo.modelo}" />
+ 
+            						<h:outputText value="Placa:" />
+            						<h:outputText value="#{veiculo.placa}" />
+ 
+            						<h:outputText value="KM:" />
+            						<h:outputText value="#{veiculo.quilometragem}" />
+        						
+        						</h:panelGrid>
+        							<br></br>
+        							  
+    								<p:button outcome="/restrito/cadOcorrencia.xhtml" value="Adicionar Ocorrência" styleClass="botao">	
+    									<f:param name="codVeiculo" value="#{veiculo.codigo}" />
+									</p:button>
+									
+	       							<f:facet name="footer">	
+                						Listagem
+        							</f:facet>
+   							</p:carousel>
+        					
+        					
+        				</h:form>	
+        		</div>
+                     
       	 </div>
       	</div>                     
       </div>

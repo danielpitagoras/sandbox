@@ -64,6 +64,7 @@
 	        				Marca: #{veiculoBean.veiculoInicial.marca} <br/>
 	        				Modelo: #{veiculoBean.veiculoInicial.modelo} <br/>
 	        				Placa: #{veiculoBean.veiculoInicial.placa} <br/>
+	        				KM: #{veiculoBean.veiculoInicial.quilometragem} <br/>
 	        			</a>
 	        			<p:button outcome="/restrito/veiculos.jsf" value="Informações de Veículos" styleClass="botao" />
 	        			</h:form>	
@@ -71,8 +72,32 @@
         		<div class="caixa_4">
         			<h2>Última ocorrências do veículo:</h2>
         			<h:form id="apresOcorrencias">
+        				<p:growl id="msgs" showDetail="true"/>
         				<a href="../restrito/ocorrencias.jsf">
-        					
+						<p:dataTable id="tabela-ocorrencia" var="ocorrencia" value="#{ocorrenciaBean.listadeOcorrencias}" rules="rows" cellpadding="5" styleClass="estiloTabela">
+                          		
+                   		    <f:facet name="header">
+           						Ocorrências: 
+       						</f:facet>
+       								
+    						<p:column headerText="Data">
+        						<h:outputText value="#{ocorrencia.dataCriacao}" />
+    						</p:column>
+    								
+    						<p:column headerText="Descrição">
+								<h:outputText value="#{ocorrencia.descricao}" />
+							</p:column>
+								    
+							<p:column headerText="Quilometragem">
+								<h:outputText value="#{ocorrencia.quilometragemTotal}" />
+							</p:column>
+								    
+							<p:column headerText="Valor">
+								<h:outputText value="#{ocorrencia.valor}" />
+							</p:column>
+								 		    
+						</p:dataTable>
+
         				</a>
         				<p:button outcome="/restrito/ocorrencias.jsf" value="Adicionar Ocorrências" styleClass="botao" />
         			</h:form>

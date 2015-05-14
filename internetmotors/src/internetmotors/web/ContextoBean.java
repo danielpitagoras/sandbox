@@ -27,10 +27,13 @@ import internetmotors.veiculo.*;
 
 public class ContextoBean {
 
+	private Integer codVeiculo;
+	private Integer codOcorrencia;
 	private Usuario usuarioLogado = null;
 	private Veiculo veiculoSelecionado = null;
 	private List<Endereco> listadeEnderecos = new ArrayList<Endereco>();
 	private List<Veiculo> listadeVeiculos = new ArrayList<Veiculo>();
+	private List<Veiculo> lista;
 	private Part arqImagem1 = null;
 	private Part arqImagem2 = null;
 	private Part arqImagem3 = null;
@@ -43,6 +46,31 @@ public class ContextoBean {
 	private byte[] imgb5 = null;
 	
 	
+	//Interface de Ocorrências
+	public StreamedContent getImgStream() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		
+	    if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+	        // Fase de renderização.
+	        return new DefaultStreamedContent();
+	    }
+	    else {
+	        // Fase do browser solicitar a imagem.
+	        String id = context.getExternalContext().getRequestParameterMap().get("id");
+	        
+	        VeiculoRN veiculoRN = new VeiculoRN();
+			this.lista = veiculoRN.listar();
+	       
+	        for (int i = 0; i < lista.size(); i++) {
+	        	if (Integer.valueOf(id) == lista.get(i).getCodigo()) {
+	    		   return new DefaultStreamedContent(new ByteArrayInputStream(lista.get(i).getImagem1()));
+	    	   }	   
+	       }
+	        return new DefaultStreamedContent();
+	    }
+	}
+	
+	//Interface de Veículos
 	public StreamedContent getImgStream1() throws IOException {
 		
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -132,6 +160,7 @@ public class ContextoBean {
 	    	return new DefaultStreamedContent();
 	    }
 	}
+	//Fim do Stream interface de veículos
 	
 	public List<Endereco> getListadeEnderecos() {
 		
@@ -334,6 +363,22 @@ public class ContextoBean {
 
 	public void setImgb5(byte[] imgb5) {
 		this.imgb5 = imgb5;
+	}
+
+	public Integer getCodVeiculo() {
+		return codVeiculo;
+	}
+
+	public void setCodVeiculo(Integer codVeiculo) {
+		this.codVeiculo = codVeiculo;
+	}
+
+	public Integer getCodOcorrencia() {
+		return codOcorrencia;
+	}
+
+	public void setCodOcorrencia(Integer codOcorrencia) {
+		this.codOcorrencia = codOcorrencia;
 	}
 	
 }
