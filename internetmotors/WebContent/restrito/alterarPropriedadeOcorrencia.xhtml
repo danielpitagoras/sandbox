@@ -46,8 +46,36 @@
         <div class="quadro-baixo">
         	<div class="quadro-topo">
         		<div class="caixa_3">
-        				
+        			<h:form id="preCarrega">
+	        			<f:metadata>
+						  	<f:viewParam name="codOcorrencia" value="#{contextoBean.codOcorrencia}" />	    
+						</f:metadata>       				
+        			</h:form>	        	
         		</div>
+        			<div class="caixa_4">
+        			<h:form id="dadosAlteracaoPropriedade">
+						
+							<h:panelGroup id="cadDadosAlteracaoPropriedade">
+	                			<h:panelGrid column="2">
+			                		<h:inputHidden value="#{altPropriedadeBean.alteracaoPropriedade.codigo}" />
+									
+									<h:outputLabel value="Email do novo proprietário: " for="buscaEmail" />
+									<h:inputText id="buscaEmail" label="EmailNovoProprietário" value="#{altPropriedadeBean.emailNovoProprietario}">
+		        						<f:ajax execute="buscaEmail" render="nomeNovoProprietario" event="blur" />
+		    						</h:inputText>
+		    						
+		    						<h:outputLabel value="Nome do novo proprietário: " for="nomeNovoProprietario" />
+		    						<h:inputText id="nomeNovoProprietario" value="#{altPropriedadeBean.alteracaoPropriedade.nomeNovoProprietario}" />
+		    						<h:inputHidden value="#{altPropriedadeBean.alteracaoPropriedade.emailNovoProprietario}" />
+		    						
+							
+								</h:panelGrid>
+							</h:panelGroup>	
+						
+						
+						<h:commandButton action="#{altPropriedadeBean.salvar}" value="Enviar" styleClass="botao" />						
+					</h:form>	
+        			</div>
                      
       	 </div>
       	</div>                     

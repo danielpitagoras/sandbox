@@ -2,6 +2,7 @@ package internetmotors.propriedade;
 
 import java.util.*;
 import internetmotors.util.DAOFactory;
+import internetmotors.usuario.Usuario;
 
 public class AlteracaoPropriedadeRN {
 
@@ -22,4 +23,9 @@ public class AlteracaoPropriedadeRN {
 	public List<AlteracaoPropriedade> listar() {
 		return this.alteracaoPropriedadeDAO.listar();
 	}
+	
+	public List<AlteracaoPropriedade> listarPorAlteracao(Usuario usuario){
+		return this.alteracaoPropriedadeDAO.listarPorAlteracao(usuario);
+	}
+	
 }

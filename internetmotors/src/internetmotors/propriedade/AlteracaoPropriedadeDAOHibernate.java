@@ -3,6 +3,9 @@ package internetmotors.propriedade;
 import java.util.List;
 
 import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
+
+import internetmotors.usuario.Usuario;
 
 public class AlteracaoPropriedadeDAOHibernate implements
 		AlteracaoPropriedadeDAO {
@@ -38,6 +41,16 @@ public class AlteracaoPropriedadeDAOHibernate implements
 	@Override
 	public List<AlteracaoPropriedade> listar() {
 		return this.session.createCriteria(AlteracaoPropriedade.class).list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<AlteracaoPropriedade> listarPorAlteracao(Usuario usuario) {
+		
+		Criteria criteria = this.session.createCriteria(AlteracaoPropriedade.class);
+		criteria.add(Restrictions.eqOrIsNull("emailNovoProprietario", usuario.getEmail()));
+		criteria.add(Restrictions.eq("status", "RACEITE"));
+		return criteria.list();
+
 	}
 
 }

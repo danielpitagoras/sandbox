@@ -21,6 +21,10 @@ private UsuarioDAO usuarioDAO;
 		return this.usuarioDAO.buscarPorLogin(login);
 	}
 	
+	public Usuario buscarPorEmail(String email) {
+		return this.usuarioDAO.buscarPorEmail(email);
+	}
+	
 	public void salvar(Usuario usuario) {
 		Integer codigo = usuario.getCodigo();
 		if (codigo == null || codigo ==0) {

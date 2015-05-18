@@ -53,6 +53,9 @@
 	        				Telefone: #{contextoBean.usuarioLogado.fone} <br/>
 	        				Celular: #{contextoBean.usuarioLogado.celular} <br/>
         					<p:button outcome="/publico/usuario.xhtml" value="Alterar Informações" styleClass="botao" />
+        				
+        					<a href="../restrito/autorizacao.jsf">#{altPropriedadeBean.situacaoAlteracaoPropriedade}</a>
+        				
         				</h:form>
         		</div>
         		<div class="caixa_4">
