@@ -21,7 +21,7 @@ public class AltPropriedadeBean {
 
 	private Ocorrencia ocorrenciaEmEdicao;
 	private AlteracaoPropriedade alteracaoPropriedade = new AlteracaoPropriedade();
-	private AlteracaoPropriedade alteracaoPropriedadeSelecionadado;
+	private AlteracaoPropriedade alteracaoPropriedadeSelecionado;
 	private List<AlteracaoPropriedade> listaAlteracaoPropriedade;
 	private Usuario usuarioLogado;
 	private Usuario usuarioDestino;
@@ -29,9 +29,26 @@ public class AltPropriedadeBean {
 	private Boolean enviarEmail;
 	private String situacaoAlteracaoPropriedade;
 	
+	public void transPropriedade() {
+		
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		AlteracaoPropriedadeRN alteracaoPropriedadeRN = new AlteracaoPropriedadeRN();
+		this.alteracaoPropriedadeSelecionado.setStatus("AACEITE");
+		alteracaoPropriedadeRN.atualizarAceite(alteracaoPropriedadeSelecionado, contextoBean.getUsuarioLogado());
+
+	}
+	
+	public void nTransPropriedade() {
+	
+		AlteracaoPropriedadeRN alteracaoPropriedadeRN = new AlteracaoPropriedadeRN();
+		this.alteracaoPropriedadeSelecionado.setStatus("NACEITE");
+		alteracaoPropriedadeRN.atualizar(alteracaoPropriedadeSelecionado);
+		
+	}
+	
 	public void salvar() {
 		
-		ContextoBean contextoBean = new ContextoBean();
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
 		OcorrenciaRN ocorrenciaRN = new OcorrenciaRN();
 		this.usuarioLogado = contextoBean.getUsuarioLogado();
 		this.ocorrenciaEmEdicao = ocorrenciaRN.carregar(contextoBean.getCodOcorrencia());
@@ -64,14 +81,17 @@ public class AltPropriedadeBean {
 	public void setAlteracaoPropriedade(AlteracaoPropriedade alteracaoPropriedade) {
 		this.alteracaoPropriedade = alteracaoPropriedade;
 	}
-	public AlteracaoPropriedade getAlteracaoPropriedadeSelecionadado() {
-		return alteracaoPropriedadeSelecionadado;
+	public AlteracaoPropriedade getAlteracaoPropriedadeSelecionado() {
+		return alteracaoPropriedadeSelecionado;
 	}
-	public void setAlteracaoPropriedadeSelecionadado(
-			AlteracaoPropriedade alteracaoPropriedadeSelecionadado) {
-		this.alteracaoPropriedadeSelecionadado = alteracaoPropriedadeSelecionadado;
+	public void setAlteracaoPropriedadeSelecionado(
+			AlteracaoPropriedade alteracaoPropriedadeSelecionado) {
+		this.alteracaoPropriedadeSelecionado = alteracaoPropriedadeSelecionado;
 	}
 	public List<AlteracaoPropriedade> getListaAlteracaoPropriedade() {
+		ContextoBean contextoBean = ContextoUtil.getContextoBean();
+		AlteracaoPropriedadeRN alteracaoPropriedadeRN = new AlteracaoPropriedadeRN();
+		this.listaAlteracaoPropriedade = alteracaoPropriedadeRN.listarPorAlteracao(contextoBean.getUsuarioLogado());
 		return listaAlteracaoPropriedade;
 	}
 	public void setListaAlteracaoPropriedade(
@@ -117,7 +137,7 @@ public class AltPropriedadeBean {
 		if (alteracaoPropriedadeRN.listarPorAlteracao(contextoBean.getUsuarioLogado()).isEmpty()) {
 			this.situacaoAlteracaoPropriedade = null;
 		} else {
-			this.situacaoAlteracaoPropriedade = "Exite veículo aguardando sua aprovação de propriedade. Clique aqui para aceitar";
+			this.situacaoAlteracaoPropriedade = "Atenção - Exite veículo aguardando sua aprovação de propriedade. Clique aqui para aceitar";
 		}
 		
 		return situacaoAlteracaoPropriedade;

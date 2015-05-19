@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -44,7 +45,52 @@
       <div class="principal">
         <div class="quadro-baixo">
         	<div class="quadro-topo">
-        	
+        		<div class="caixa_4">
+        			<h:form id="exibeVeiculoAguardTransfPropriedade">
+        			<h2>Transferências de propriedade:</h2>
+        			<p:dataTable id="tabela-aguard-AltPropriedade" var="alteracaoPropriedade" value="#{altPropriedadeBean.listaAlteracaoPropriedade}" rules="rows" cellpadding="5" styleClass="estiloTabela">
+        				
+        				<f:facet name="header">
+							Transferências em espera: 
+       					</f:facet>
+       					
+       					<p:column headerText="Nome do proprietário anterior">
+        					<h:outputText value="#{alteracaoPropriedade.usuario.nome}" />
+    					</p:column>
+    					
+    					<p:column headerText="Veículo">
+        					<h:outputText value="#{alteracaoPropriedade.ocorrencia.veiculo.modelo}" />
+    					</p:column>
+    					
+    					<p:column headerText="Placa">
+        					<h:outputText value="#{alteracaoPropriedade.ocorrencia.veiculo.placa}" />
+    					</p:column>
+    					
+    					<p:column headerText="Aceitar Propriedade">
+							<h:commandLink action="#{altPropriedadeBean.transPropriedade()}">
+	                        	<h:graphicImage library="imagens" name="editar16.png" style="border:0" />
+	                           		<f:setPropertyActionListener target="#{altPropriedadeBean.alteracaoPropriedadeSelecionado}" value="#{alteracaoPropriedade}" />
+	                           			<f:ajax render=":exibeVeiculoAguardTransfPropriedade :exibeVeiculoPLinkAutorizacao" />
+	                        </h:commandLink>
+						</p:column>
+						
+						<p:column headerText="Negar Propriedade">
+							<h:commandLink action="#{altPropriedadeBean.nTransPropriedade()}">
+	                        	<h:graphicImage library="imagens" name="excluir16.png" style="border:0" />
+	                           		<f:setPropertyActionListener target="#{altPropriedadeBean.alteracaoPropriedadeSelecionado}" value="#{alteracaoPropriedade}" />
+	                           			<f:ajax render=":exibeVeiculoAguardTransfPropriedade :exibeVeiculoPLinkAutorizacao" />
+	                        </h:commandLink>
+						</p:column>
+						
+       						
+        			</p:dataTable>
+        			</h:form>
+        		</div>
+        		<div class="caixa_4">
+        			<h:form id="exibeVeiculoPLinkAutorizacao">
+        				<h2>Veículos para Exibição: </h2>
+        			</h:form>
+        		</div>
                           
       	 </div>
       	</div>                     
