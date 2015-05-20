@@ -30,7 +30,11 @@
             <li><a class="ativo" href="../restrito/autorizacao.jsf">Autorização</a></li>
             <li><a href="../restrito/historico.jsf">Histórico</a></li>
           </ul>
+          <h:form id="logout">
+          	
+         	<h:commandButton action="#{principalBean.sair()}" value="Sair" styleClass="botao" />
           
+          </h:form>
         </div>
         
           
@@ -85,12 +89,54 @@
        						
         			</p:dataTable>
         			</h:form>
-        		</div>
-        		<div class="caixa_4">
+        			
         			<h:form id="exibeVeiculoPLinkAutorizacao">
         				<h2>Veículos para Exibição: </h2>
+        				<p:dataTable id="tab-veiculos-AutExibicao" var="veiculo" value="#{veiculoBean.listadeVeiculos}" rules="rows" cellpadding="5" styleClass="estiloTabela">
+        				
+        					<f:facet name="header">
+								Veículos para autorizar:
+       						</f:facet>
+        				
+        					<p:column headerText="Imagem: ">
+        						<p:graphicImage value="#{contextoBean.imgStream}" width="100" height="70">
+                           				<f:param name="id" value="#{veiculo.codigo}" />
+                           		</p:graphicImage>
+    						</p:column>	
+    						
+    						<p:column headerText="Marca">
+        						<h:outputText value="#{veiculo.marca}" />
+    						</p:column>
+    						
+    						<p:column headerText="Modelo">
+        						<h:outputText value="#{veiculo.modelo}" />
+    						</p:column>
+        				
+        					<p:column headerText="Placa">
+        						<h:outputText value="#{veiculo.placa}" />
+    						</p:column>
+    						
+    						<p:column headerText="Exibindo">
+        						<h:outputText value="#{autorizacaoExibicaoBean.getStatusAutorizacao(veiculo.codigo)}" />
+    						</p:column>
+    						
+    						<p:column headerText="Link">
+        						<h:outputText value="#{autorizacaoExibicaoBean.getLinkAutorizacao(veiculo.codigo)}" />		
+    						</p:column>
+        				
+        					<p:column headerText="Autorizar">
+        						<h:commandLink action="#{autorizacaoExibicaoBean.salvaAutorizacao()}">
+	                        	<h:graphicImage library="imagens" name="visto.png" style="border:0" />
+	                           		<f:setPropertyActionListener target="#{autorizacaoExibicaoBean.codRVeiculo}" value="#{veiculo.codigo}" />
+	                           			<f:ajax render=":exibeVeiculoPLinkAutorizacao" />
+	                        </h:commandLink>
+        					</p:column>
+        				
+        				</p:dataTable>
         			</h:form>
+        		
         		</div>
+        		
                           
       	 </div>
       	</div>                     
@@ -100,8 +146,7 @@
     <!--==============================Rodapé=================================-->
     <div id="rodape">	
        
-      	<span class="endereco">Av. das Américas 700, Barra da Tijuca</span> 
-      	<span class="fone">Tel: +55 21 2100 0000</span> 
+       
       
     </div>	
  

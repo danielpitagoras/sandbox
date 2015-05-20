@@ -20,7 +20,9 @@ import org.primefaces.model.StreamedContent;
 import internetmotors.endereco.Endereco;
 import internetmotors.endereco.EnderecoRN;
 import internetmotors.usuario.*;
+import internetmotors.util.ContextoUtil;
 import internetmotors.veiculo.*;
+import internetmotors.autorizacao.*;
 
 @ManagedBean(name = "contextoBean")
 @SessionScoped
@@ -44,7 +46,6 @@ public class ContextoBean {
 	private byte[] imgb3 = null;
 	private byte[] imgb4 = null;
 	private byte[] imgb5 = null;
-	
 	
 	//Interface de Ocorrências
 	public StreamedContent getImgStream() throws IOException {

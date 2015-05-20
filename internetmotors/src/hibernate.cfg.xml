@@ -17,6 +17,8 @@
     	<mapping class="internetmotors.propriedade.AlteracaoPropriedade"/>
     	<mapping class="internetmotors.servico.Servico"/>
     	<mapping class="internetmotors.sinistro.Sinistro"/>
+    	<mapping class="internetmotors.autorizacao.AutorizacaoExibicao"/>
+    	<mapping class="internetmotors.pagamento.Pagamento"/>
     	
     </session-factory>
 </hibernate-configuration>

@@ -30,7 +30,11 @@
             <li><a href="../restrito/autorizacao.jsf">Autorização</a></li>
             <li><a href="../restrito/historico.jsf">Histórico</a></li>
           </ul>
-            
+            <h:form id="logout">
+          	
+         	<h:commandButton action="#{principalBean.sair()}" value="Sair" styleClass="botao" />
+          
+          </h:form>
           
         </div>
         

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Internet Motors</title>
+
+<h:outputStylesheet library="css" name="estilo.css"/>
+
+</h:head>
+<body id="page2">
+<div id="areatotal">
+
+  <div class="fundo">
+    <!--==============================Cabeçalho=================================-->
+    <div id="cabecalho">
+    <h1><a href="index.html">Internet Motors</a></h1>
+      <div class="principal">
+        <div class="pacote">
+          
+          <ul class="menu">
+            <li><a href="../publico/principal.jsf">.</a></li>
+            <li><a href="../restrito/apresentacao.jsf">Perfil: #{contextoBean.usuarioLogado.login}</a></li>
+            <li><a href="../restrito/veiculos.jsf">Veículos </a></li>
+            <li><a class="ativo" href="../restrito/ocorrencias.jsf">Ocorrências</a></li>
+            <li><a href="../restrito/autorizacao.jsf">Autorização</a></li>
+            <li><a href="../restrito/historico.jsf">Histórico</a></li>
+          </ul>
+          <h:form id="logout">
+          	
+         	<h:commandButton action="#{principalBean.sair()}" value="Sair" styleClass="botao" />
+          
+          </h:form>
+        </div>
+        
+          
+        
+      </div>
+    </div>
+    </div>
+    <!--==============================Conteúdo================================-->
+   
+    <div id="conteudo">
+       
+      <div class="principal">
+        <div class="quadro-baixo">
+        	<div class="quadro-topo">
+        		<div class="caixa_3">
+        			<h:form id="dadosPagamento">
+	        			<f:metadata>
+						  	<f:viewParam name="codAutorizacao" value="#{pagamentoBean.codAutorizacao}" />	    
+						</f:metadata>
+					
+						<h2>Insira os dados para pagamento abaixo:</h2>
+						<h:panelGroup id="dadPagamento">
+							<h:panelGrid column="2">
+								<h:inputHidden value="#{pagamentoBean.pagamento.codigo}" />
+								
+								<h:outputLabel value="Bandeira Cartão de Crédito" for="bandeiraCartao" />
+								<h:selectOneRadio id="bandeiraCartao" value="#{pagamentoBean.pagamento.bandeiraCartao}">
+						            <f:selectItem itemLabel="Master Card" itemValue="mastercard" />
+						            <f:selectItem itemLabel="Visa" itemValue="visa" />
+						        </h:selectOneRadio>
+								
+								<h:outputLabel value="Número Cartão de Crédito" for="numeroCartao" />
+								<h:inputText id="numeroCartao" label="Número Cartão" value="#{pagamentoBean.pagamento.numeroCartao}" />
+								
+								<h:outputLabel value="Código de Segurança" for="codigoSeguranca" />
+								<h:inputSecret id="codigoSeguranca" label="Cod Segurança" value="#{pagamentoBean.pagamento.codSegCartao}" />
+								
+								<h:outputLabel value="Nome conforme cartão" for="nomeTitular" />
+								<h:inputText id="nomeTitular" label="Nome cartão" value="#{pagamentoBean.pagamento.nomeTitularCartao}" />
+								
+								<h:outputLabel value="Válidade Cartão" for="dataValidadeCartao" />
+								<h:inputText id="dataValidadeCartao" label="Válidade Cartão" value="#{pagamentoBean.pagamento.dataValidadeCartao}" />
+								
+								<h:outputLabel value="Modalidade para Pagamento" for="modalidadePagamento" />
+								<h:selectOneRadio id="modalidadePagamento" value="#{pagamentoBean.pagamento.modalidadePagamento}" layout="grid" columns="3">
+						            <f:selectItem itemLabel="A VISTA" itemValue="avista" />
+						            <f:selectItem itemLabel="2x" itemValue="2x" />
+						            <f:selectItem itemLabel="3x" itemValue="3x" />
+						            <f:selectItem itemLabel="4x" itemValue="4x" />
+						            <f:selectItem itemLabel="5x" itemValue="5x" />
+						            <f:selectItem itemLabel="6x" itemValue="6x" />
+						            <f:selectItem itemLabel="7x" itemValue="7x" />
+						            <f:selectItem itemLabel="8x" itemValue="8x" />
+						            <f:selectItem itemLabel="9x" itemValue="9x" />
+						            <f:selectItem itemLabel="10x" itemValue="10x"/>
+						        </h:selectOneRadio>
+								
+								
+							</h:panelGrid>
+						</h:panelGroup>	
+							<h:commandButton action="#{pagamentoBean.salvar}" value="Enviar" styleClass="botao" />
+					</h:form>	
+        		</div>
+                     
+      	 </div>
+      	</div>                     
+      </div>
+    </div>
+    
+    <!--==============================Rodapé=================================-->
+    <div id="rodape">	
+       
+      	<span class="endereco">Av. das Américas 700, Barra da Tijuca</span> 
+      	<span class="fone">Tel: +55 21 2100 0000</span> 
+      
+    </div>	
+ 
+
+</div>
+</body>
+
+</html>

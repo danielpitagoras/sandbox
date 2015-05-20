@@ -1,14 +1,14 @@
 package internetmotors.util;
 
-import internetmotors.ocorrencia.OcorrenciaDAOHibernate;
 import internetmotors.usuario.*;
 import internetmotors.veiculo.*;
+import internetmotors.autorizacao.*;
 import internetmotors.endereco.*;
 import internetmotors.ocorrencia.*;
 import internetmotors.servico.*;
 import internetmotors.sinistro.*;
+import internetmotors.pagamento.*;
 import internetmotors.propriedade.*;
-
 
 public class DAOFactory {
 	
@@ -64,6 +64,22 @@ public class DAOFactory {
 		SinistroDAOHibernate sinistroDAO = new SinistroDAOHibernate();
 		sinistroDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		return sinistroDAO;
+		
+	}
+	
+	public static AutorizacaoExibicaoDAO criarAutorizacaoExibicaoDAO() {
+		
+		AutorizacaoExibicaoDAOHibernate autorizacaoExibicaoDAO = new AutorizacaoExibicaoDAOHibernate();
+		autorizacaoExibicaoDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		return autorizacaoExibicaoDAO;
+		
+	}
+	
+	public static PagamentoDAO criarPagamentoDAO() {
+		
+		PagamentoDAOHibernate pagamentoDAO = new PagamentoDAOHibernate();
+		pagamentoDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		return pagamentoDAO;
 		
 	}
 	
