@@ -19,9 +19,12 @@ public class PagamentoRN {
 		AutorizacaoExibicaoRN autorizacaoExibicaoRN = new AutorizacaoExibicaoRN();
 		AutorizacaoExibicao autorizacaoExibicaoPAtualizar = new AutorizacaoExibicao();
 		
+		String ident = this.geraValor();
+		
 		autorizacaoExibicaoPAtualizar = pagamento.getAutorizacaoExibicao();
 		autorizacaoExibicaoPAtualizar.setAutorizado(true);
-		autorizacaoExibicaoPAtualizar.setEnderecoLink("/InternetMotors/publico/historico.jsf?codAutorizacao=" + autorizacaoExibicaoPAtualizar.getCodigo() + "?codSeguranca=" + this.geraValor());
+		autorizacaoExibicaoPAtualizar.setEnderecoLink("/InternetMotors/publico/historico.jsf?codAutorizacao=" + autorizacaoExibicaoPAtualizar.getCodigo() + "&codSeguranca=" + ident);
+		autorizacaoExibicaoPAtualizar.setIdentificacao(ident);
 		autorizacaoExibicaoRN.salvar(autorizacaoExibicaoPAtualizar);
 		
 		this.pagamentoDAO.salvar(pagamento);

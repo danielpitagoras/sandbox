@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:p="http://primefaces.prime.com.tr/ui"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"	
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -24,17 +24,11 @@
           
           <ul class="menu">
             <li><a href="../publico/principal.jsf">.</a></li>
-            <li><a href="../restrito/apresentacao.jsf">Perfil: #{contextoBean.usuarioLogado.login}</a></li>
-            <li><a href="../restrito/veiculos.jsf">Veículos </a></li>
-            <li><a href="../restrito/ocorrencias.jsf">Ocorrências</a></li>
-            <li><a href="../restrito/autorizacao.jsf">Autorização</a></li>
-            <li><a class="ativo" href="../restrito/historico.jsf">Histórico</a></li>
+            <li><a href="../publico/login.jsf">Login</a></li>
+            <li><a href="../publico/usuario.jsf">Cadastra-se</a></li>
+            
           </ul>
-          <h:form id="logout">
-          	
-         	<h:commandButton action="#{principalBean.sair()}" value="Sair" styleClass="botao" />
           
-          </h:form>
         </div>
         
           
@@ -48,23 +42,20 @@
        
       <div class="principal">
         <div class="quadro-baixo">
-        	<div class="quadro-topo">
-        		<div class="caixa_3">
-        			<h:form id="preSelecionaVeiculo">
-                        
-                    	<h:outputLabel value="Selecione o veículo: " for="veiculo"/>
-						<h:selectOneListbox id="veiculo" value="#{historicoBean.veiculoSelecionado}" update="apresOcorrenciasVeiculo">
-							<f:selectItems value="#{veiculoBean.listadeVeiculos}" var="veiculo" itemLabel="#{veiculo.placa}" itemValue="#{veiculo}" />
-		            			<f:converter converterId="conversorVeiculo"/>
-		            			<f:ajax execute=":veiculo" render="apresOcorrenciasVeiculo:veicOcorrencia"/>
- 						</h:selectOneListbox>
-            		
-                    </h:form>
-        		</div>
-        		<div class="caixa_4">
-        			<h:form id="apresOcorrenciasVeiculo">
-        				<h:panelGroup id="veicOcorrencia">
-        				<p:dataTable id="tab-Ocorrencias-AutExibicao" var="ocorrencia" value="#{historicoBean.listaOcorrenciasPExibirPrivado}" rules="rows" cellpadding="5" styleClass="estiloTabela">
+        	<div class="quadro-topo">        	
+        		<div class="caixa_5">
+        			<h:form id="dadosExibicaoHistorico">
+	        			<f:metadata>
+						  	<f:viewParam name="codAutorizacao" value="#{historicoBean.codAutorizacao}" />	    
+							<f:viewParam name="codSeguranca" value="#{historicoBean.codSeguranca}" />
+						</f:metadata>
+						<h2>Veículo: </h2>
+						
+						<p:graphicImage value="#{contextoBean.imgStream}" width="180" height="150">
+                        	<f:param name="id" value="#{historicoBean.veiculoPExibir.codigo}" />
+                        </p:graphicImage>
+						
+						<p:dataTable id="tab-Ocorrencias-AutExibicao" var="ocorrencia" value="#{historicoBean.listaOcorrenciasPExibir}" rules="rows" cellpadding="5" styleClass="estiloTabela">
 							
 							<f:facet name="header">
 								Ocorrências do Veículo
@@ -95,10 +86,8 @@
     						</p:column>
 						
 						</p:dataTable>
-						</h:panelGroup>
-        			</h:form>
-        			
-        		</div>          
+        			</h:form>	
+        		</div>           
       	 </div>
       	</div>                     
       </div>
@@ -107,8 +96,7 @@
     <!--==============================Rodapé=================================-->
     <div id="rodape">	
        
-      	<span class="endereco">Av. das Américas 700, Barra da Tijuca</span> 
-      	<span class="fone">Tel: +55 21 2100 0000</span> 
+      	
       
     </div>	
  
